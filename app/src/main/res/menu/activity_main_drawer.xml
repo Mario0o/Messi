@@ -3,21 +3,21 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_home"
+            android:id="@+id/nav_weixin"
             android:icon="@drawable/nav_icon_home"
-            android:title="首页"/>
+            android:title="微信精选"/>
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_joke"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery"/>
+            android:title="笑话大全"/>
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_historytoday"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow"/>
+            android:title="历史上的今天"/>
         <item
-            android:id="@+id/nav_manage"
+            android:id="@+id/nav_inquire"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Tools"/>
+            android:title="我要查询"/>
         <item
             android:id="@+id/night"
             android:icon="@drawable/ic_menu_manage"
@@ -29,11 +29,15 @@
             <item
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_menu_share"
-                android:title="Share"/>
+                android:title="分享"/>
+            <item
+                android:id="@+id/nav_yijian"
+                android:icon="@drawable/ic_menu_send"
+                android:title="意见反馈"/>
             <item
                 android:id="@+id/nav_send"
                 android:icon="@drawable/ic_menu_send"
-                android:title="Send"/>
+                android:title="发送给朋友"/>
         </menu>
     </item>
 

@@ -3,20 +3,27 @@ package com.adu.messi.ui.activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatDelegate;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDelegate;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import com.adu.messi.MyApplication;
 import com.adu.messi.R;
+import com.adu.messi.control.NavigateManager;
 import com.adu.messi.utils.LogUtils;
 
 public class MainActivity extends AppCompatActivity
@@ -25,10 +32,12 @@ public class MainActivity extends AppCompatActivity
     private SharedPreferences sp;
     private boolean isNight;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
 
         initView();
         initData();
@@ -38,12 +47,9 @@ public class MainActivity extends AppCompatActivity
 
     //初始化view
     private void initView() {
-        sp = getSharedPreferences("adu",MODE_PRIVATE);
-
-
-
-
+        sp = getSharedPreferences("adu", MODE_PRIVATE);
     }
+
 
     //初始化数据
     private void initData() {
@@ -131,27 +137,27 @@ public class MainActivity extends AppCompatActivity
 
         int id = item.getItemId();
 
-        if (id == R.id.nav_home) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
+        if (id == R.id.nav_weixin) {
+            NavigateManager.gotoWeiXinActivity(this);
+        } else if (id == R.id.nav_joke) {
+            NavigateManager.gotoJokeActivity(this);
+        } else if (id == R.id.nav_historytoday) {
+            NavigateManager.gotoHistoryTodayActivity(this);
+        } else if (id == R.id.nav_inquire) {
+            NavigateManager.gotoInquireActivity(this);
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
 
-        } else if (id == R.id.night){
+        } else if (id == R.id.night) {
             //模式切换
-            isNight = sp.getBoolean("night",false);
-            if (isNight){
+            isNight = sp.getBoolean("night", false);
+            if (isNight) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                sp.edit().putBoolean("night",false).commit();
+                sp.edit().putBoolean("night", false).commit();
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                sp.edit().putBoolean("night",true).commit();
+                sp.edit().putBoolean("night", true).commit();
             }
             recreate();
             return true;

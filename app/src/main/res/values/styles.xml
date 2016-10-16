@@ -16,7 +16,7 @@
         <!-- actionbar颜色-->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowBackground">@color/add_bg_color</item>
+        <item name="android:windowBackground">@color/white</item>
     </style>
 
     <!--有ActionBar的主题-->
@@ -37,6 +37,7 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:actionBarSize">@dimen/nav_bar_height</item>
         <item name="android:textColorPrimary">@color/text_color_primary</item>
+        <item name="android:windowIsTranslucent">true</item>
     </style>
 
     <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.DayNight">
