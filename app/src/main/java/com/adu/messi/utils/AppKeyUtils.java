@@ -8,7 +8,7 @@ package com.adu.messi.utils;
 public class AppKeyUtils {
 
     //微信精选
-    private static final String  WEINXIN= "510576f22516241976b649412706c9fd";
+    public static final String  WEINXIN= "http://v.juhe.cn/weixin/query?key=510576f22516241976b649412706c9fd";
     //笑话大全
     private static final String  XIAOHUA="ed1a30c37577b88d38db81b7912355d8";
     //qq号码测吉凶

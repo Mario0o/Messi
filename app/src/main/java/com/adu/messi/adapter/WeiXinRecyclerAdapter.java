@@ -1,49 +1,92 @@
 package com.adu.messi.adapter;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import com.adu.messi.MyApplication;
 import com.adu.messi.R;
 import com.adu.messi.bean.WeinXinBean;
+import com.adu.messi.utils.GlideUtils;
 import java.util.List;
 
 /**
  * Created by Administrator on 2016/10/16.
  */
 
-public class WeiXinRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class WeiXinRecyclerAdapter extends RecyclerView.Adapter<WeiXinRecyclerAdapter.MyHolder>{
 
-    private static final int TYPE_NORMAL_ITEM = 0;  //普通Item
-    private static final int TYPE_FOOTER_ITEM = 1;  //底部FooterView
+
+    private Context context;
     private List<WeinXinBean> list;
+    private OnItemClickLitener mOnItemClickLitener;
 
-    public WeiXinRecyclerAdapter(List<WeinXinBean> list){
+
+    public interface OnItemClickLitener {
+        void onItemClick(View view, int position);
+    }
+
+
+    public void setmOnItemClickLitener(OnItemClickLitener mOnItemClickLitener) {
+        this.mOnItemClickLitener = mOnItemClickLitener;
+    }
+
+
+    public WeiXinRecyclerAdapter(Context context, List<WeinXinBean> list) {
+        this.context = context;
         this.list = list;
     }
 
-    @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        //如果viewType是普通item返回普通的布局，否则是底部布局并返回
-        if(viewType == TYPE_NORMAL_ITEM){
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_item_weixin,parent,false);
 
+    @Override
+    public MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
+        View view = LayoutInflater.from(MyApplication.getContext()).inflate(
+            R.layout.recyclerview_item_weixin, parent, false);
+        MyHolder holder = new MyHolder(view);
+        return holder;
+    }
+
+
+    @Override public void onBindViewHolder(final MyHolder holder, int position) {
+        holder.itemTitleTv.setText(list.get(position).getTitle());
+        holder.itemContentTv.setText(list.get(position).getSource());
+
+        if(!TextUtils.isEmpty(list.get(position).getFirstImg())){
+            GlideUtils.getInstance().LoadContextBitmap(MyApplication.getContext(),list.get(position).getFirstImg(),holder.itemIv,
+                R.drawable.lod,R.drawable.iv_error,GlideUtils.LOAD_BITMAP);
         }
 
-        return null;
+        if(mOnItemClickLitener != null){
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override public void onClick(View v) {
+                    int pos = holder.getLayoutPosition();
+                    mOnItemClickLitener.onItemClick(holder.itemView,pos);
+                }
+            });
+        }
     }
 
 
-    @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-
+    @Override public int getItemCount() {
+        return list == null ? null :list.size();
     }
 
 
-    @Override
-    public int getItemCount() {
-        return 0;
+    class MyHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.item_iv) ImageView itemIv;
+        @BindView(R.id.item_title_tv) TextView itemTitleTv;
+        @BindView(R.id.item_content_tv) TextView itemContentTv;
+        public MyHolder(View itemView) {
+            super(itemView);
+            ButterKnife.bind(itemView);
+        }
     }
-
 
 }

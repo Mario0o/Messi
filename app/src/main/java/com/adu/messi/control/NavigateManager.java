@@ -28,6 +28,14 @@ public class NavigateManager {
         Intent intent = new Intent(activity, WeiXinActivity.class);
         activity.startActivity(intent);
     }
+    //跳转微信精选
+    public static void gotoWeiXinWebViewActivity(Activity activity,String title,String url){
+        Intent intent = new Intent(activity, WeiXinActivity.class);
+        intent.putExtra("title",title);
+        intent.putExtra("url",url);
+        activity.startActivity(intent);
+    }
+
     //跳转笑话大全
     public static void gotoJokeActivity(Activity activity){
         Intent intent = new Intent(activity, JokeActivity.class);

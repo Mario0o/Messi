@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatDelegate;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.tencent.bugly.crashreport.CrashReport;
 
 /**
  * Created by adu on 2016/10/15.
@@ -18,6 +19,7 @@ public class MyApplication extends Application {
 
     @Override public void onCreate() {
         super.onCreate();
+        CrashReport.initCrashReport(getApplicationContext(), "b0239dcbb5", false);
         context = getApplicationContext();
         queues = Volley.newRequestQueue(getApplicationContext());
 
