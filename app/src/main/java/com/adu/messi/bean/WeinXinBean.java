@@ -9,11 +9,8 @@ package com.adu.messi.bean;
 public class WeinXinBean {
 
     private String firstImg;
-    private String id;
     private String source;
     private String title;
-    private String url;
-    private String mark;
 
 
     public String getFirstImg() {
@@ -25,15 +22,6 @@ public class WeinXinBean {
         this.firstImg = firstImg;
     }
 
-
-    public String getId() {
-        return id;
-    }
-
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
 
     public String getSource() {
@@ -55,23 +43,4 @@ public class WeinXinBean {
         this.title = title;
     }
 
-
-    public String getUrl() {
-        return url;
-    }
-
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-
-    public String getMark() {
-        return mark;
-    }
-
-
-    public void setMark(String mark) {
-        this.mark = mark;
-    }
 }

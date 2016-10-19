@@ -2,13 +2,14 @@ package com.adu.messi.control;
 
 import android.app.Activity;
 import android.content.Intent;
-import com.adu.messi.ui.activity.HistoryTodayActivity;
-import com.adu.messi.ui.activity.InquireActivity;
-import com.adu.messi.ui.activity.JokeActivity;
+import com.adu.messi.ui.activity.WeiXinWebViewActivity;
+import com.adu.messi.ui.fragment.HistoryTodayFragment;
+import com.adu.messi.ui.fragment.InquireFragment;
+import com.adu.messi.ui.fragment.JokeFragment;
 import com.adu.messi.ui.activity.MainActivity;
 import com.adu.messi.ui.activity.RobotActivity;
-import com.adu.messi.ui.activity.WeiXinActivity;
 import com.adu.messi.ui.activity.WhetherActivity;
+import com.adu.messi.ui.fragment.WeiXinFragment;
 
 /**
  * 页面跳转
@@ -25,32 +26,18 @@ public class NavigateManager {
     }
     //跳转微信精选
     public static void gotoWeiXinActivity(Activity activity){
-        Intent intent = new Intent(activity, WeiXinActivity.class);
+        Intent intent = new Intent(activity, WeiXinFragment.class);
         activity.startActivity(intent);
     }
-    //跳转微信精选
+    //跳转微信精选详情
     public static void gotoWeiXinWebViewActivity(Activity activity,String title,String url){
-        Intent intent = new Intent(activity, WeiXinActivity.class);
+        Intent intent = new Intent(activity, WeiXinWebViewActivity.class);
         intent.putExtra("title",title);
         intent.putExtra("url",url);
         activity.startActivity(intent);
     }
 
-    //跳转笑话大全
-    public static void gotoJokeActivity(Activity activity){
-        Intent intent = new Intent(activity, JokeActivity.class);
-        activity.startActivity(intent);
-    }
-    //跳转历史上的今天
-    public static void gotoHistoryTodayActivity(Activity activity){
-        Intent intent = new Intent(activity, HistoryTodayActivity.class);
-        activity.startActivity(intent);
-    }
-    //跳转查询信息
-    public static void gotoInquireActivity(Activity activity){
-        Intent intent = new Intent(activity, InquireActivity.class);
-        activity.startActivity(intent);
-    }
+
     //跳转到问答机器人
     public static void gotoRobotActivity(Activity activity){
         Intent intent = new Intent(activity,RobotActivity.class);

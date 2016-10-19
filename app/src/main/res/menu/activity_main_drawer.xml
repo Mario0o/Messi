@@ -3,6 +3,10 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/nav_frist"
+            android:icon="@drawable/nav_icon_home"
+            android:title="首页"/>
+        <item
             android:id="@+id/nav_weixin"
             android:icon="@drawable/nav_icon_home"
             android:title="微信精选"/>

@@ -5,14 +5,14 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,9 +21,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import com.adu.messi.MyApplication;
 import com.adu.messi.R;
 import com.adu.messi.control.NavigateManager;
+import com.adu.messi.ui.fragment.HistoryTodayFragment;
+import com.adu.messi.ui.fragment.HomeFragment;
+import com.adu.messi.ui.fragment.InquireFragment;
+import com.adu.messi.ui.fragment.JokeFragment;
+import com.adu.messi.ui.fragment.WeiXinFragment;
 import com.adu.messi.utils.LogUtils;
 
 public class MainActivity extends AppCompatActivity
@@ -56,6 +60,9 @@ public class MainActivity extends AppCompatActivity
         //设置toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        //首先加载首页
+        initPagerContent(new HomeFragment());
 
         //设置DrawerLayout
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -137,19 +144,22 @@ public class MainActivity extends AppCompatActivity
 
         int id = item.getItemId();
 
-        if (id == R.id.nav_weixin) {
-            NavigateManager.gotoWeiXinActivity(this);
-        } else if (id == R.id.nav_joke) {
-            NavigateManager.gotoJokeActivity(this);
-        } else if (id == R.id.nav_historytoday) {
-            NavigateManager.gotoHistoryTodayActivity(this);
-        } else if (id == R.id.nav_inquire) {
-            NavigateManager.gotoInquireActivity(this);
-        } else if (id == R.id.nav_share) {
+        if (id == R.id.nav_frist){          //首页
+            initPagerContent(new HomeFragment());
+        }else if (id == R.id.nav_weixin) {      //微信精选
+            getSupportActionBar().setTitle("微信精选");
+            initPagerContent(new WeiXinFragment());
+        } else if (id == R.id.nav_joke) {       //笑话大全
+            initPagerContent(new JokeFragment());
+        } else if (id == R.id.nav_historytoday) {   //历史上的今天
+            initPagerContent(new HistoryTodayFragment());
+        } else if (id == R.id.nav_inquire) {        //查询信息
+            initPagerContent(new InquireFragment());
+        } else if (id == R.id.nav_share) {      //分享
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_send) {       //发送
 
-        } else if (id == R.id.night) {
+        } else if (id == R.id.night) {      //模式切换
             //模式切换
             isNight = sp.getBoolean("night", false);
             if (isNight) {
@@ -166,5 +176,17 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+
+    /**
+     * 加载fragment
+     */
+    private void initPagerContent(Fragment fragment) {
+        FragmentManager manager = getSupportFragmentManager();
+        //会话
+        FragmentTransaction ft = manager.beginTransaction();
+        ft.replace(R.id.myContent, fragment);
+        ft.commit();
     }
 }

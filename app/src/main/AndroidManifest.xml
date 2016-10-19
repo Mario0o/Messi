@@ -25,9 +25,12 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.MainActivity"/>
-        <activity android:name=".ui.activity.WeiXinActivity"/>
-        <activity android:name=".ui.activity.WeiXinWebViewActivity"/>
+        <activity android:name=".ui.activity.MainActivity"
+            android:theme="@style/AppThemes"/>
+        <activity
+            android:name=".ui.activity.WeiXinWebViewActivity"
+            android:theme="@style/AppThemeBar"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

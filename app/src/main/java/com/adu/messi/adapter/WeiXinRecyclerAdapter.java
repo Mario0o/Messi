@@ -10,17 +10,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import com.adu.messi.MyApplication;
 import com.adu.messi.R;
 import com.adu.messi.bean.WeinXinBean;
 import com.adu.messi.utils.GlideUtils;
+import com.adu.messi.utils.LogUtils;
 import java.util.List;
 
 /**
  * Created by Administrator on 2016/10/16.
  */
 
-public class WeiXinRecyclerAdapter extends RecyclerView.Adapter<WeiXinRecyclerAdapter.MyHolder>{
+public class WeiXinRecyclerAdapter extends RecyclerView.Adapter<WeiXinRecyclerAdapter.MyHolder> {
 
 
     private Context context;
@@ -47,7 +47,7 @@ public class WeiXinRecyclerAdapter extends RecyclerView.Adapter<WeiXinRecyclerAd
     @Override
     public MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(MyApplication.getContext()).inflate(
+        View view = LayoutInflater.from(context).inflate(
             R.layout.recyclerview_item_weixin, parent, false);
         MyHolder holder = new MyHolder(view);
         return holder;
@@ -59,15 +59,15 @@ public class WeiXinRecyclerAdapter extends RecyclerView.Adapter<WeiXinRecyclerAd
         holder.itemContentTv.setText(list.get(position).getSource());
 
         if(!TextUtils.isEmpty(list.get(position).getFirstImg())){
-            GlideUtils.getInstance().LoadContextBitmap(MyApplication.getContext(),list.get(position).getFirstImg(),holder.itemIv,
+            GlideUtils.getInstance().LoadContextBitmap(context,list.get(position).getFirstImg(),holder.itemIv,
                 R.drawable.lod,R.drawable.iv_error,GlideUtils.LOAD_BITMAP);
         }
-
-        if(mOnItemClickLitener != null){
+        if (mOnItemClickLitener != null) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override public void onClick(View v) {
                     int pos = holder.getLayoutPosition();
-                    mOnItemClickLitener.onItemClick(holder.itemView,pos);
+                    mOnItemClickLitener.onItemClick(holder.itemView, pos);
+
                 }
             });
         }
@@ -75,7 +75,7 @@ public class WeiXinRecyclerAdapter extends RecyclerView.Adapter<WeiXinRecyclerAd
 
 
     @Override public int getItemCount() {
-        return list == null ? null :list.size();
+        return list.size();
     }
 
 
@@ -85,7 +85,7 @@ public class WeiXinRecyclerAdapter extends RecyclerView.Adapter<WeiXinRecyclerAd
         @BindView(R.id.item_content_tv) TextView itemContentTv;
         public MyHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(itemView);
+            ButterKnife.bind(this, itemView);
         }
     }
 
