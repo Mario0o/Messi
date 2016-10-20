@@ -1,6 +1,5 @@
 package com.adu.messi.ui.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -67,8 +66,9 @@ public class WelcomeActivity extends AppCompatActivity {
                     try {
                         JSONObject jsonObject = new JSONObject(s);
                         mTextView.setText(jsonObject.getString("text"));
-                        GlideUtils.getInstance().LoadContextBitmap(MyApplication.getContext(),jsonObject.getString("img"),mImageView,
-                            R.drawable.lod,R.drawable.iv_error,GlideUtils.LOAD_BITMAP);
+                        //GlideUtils.getInstance().LoadContextBitmap(MyApplication.getContext(),jsonObject.getString("img"),mImageView,
+                        //    R.drawable.lod,R.drawable.iv_error,GlideUtils.LOAD_BITMAP);
+                        GlideUtils.loadImageView(MyApplication.getContext(),jsonObject.getString("img"),mImageView);
 
                     } catch (JSONException e) {
                         e.printStackTrace();

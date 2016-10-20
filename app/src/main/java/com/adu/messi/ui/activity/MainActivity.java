@@ -19,10 +19,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.adu.messi.R;
-import com.adu.messi.control.NavigateManager;
 import com.adu.messi.ui.fragment.HistoryTodayFragment;
 import com.adu.messi.ui.fragment.HomeFragment;
 import com.adu.messi.ui.fragment.InquireFragment;
@@ -146,14 +144,21 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_frist){          //首页
             initPagerContent(new HomeFragment());
+
         }else if (id == R.id.nav_weixin) {      //微信精选
             getSupportActionBar().setTitle("微信精选");
             initPagerContent(new WeiXinFragment());
+
         } else if (id == R.id.nav_joke) {       //笑话大全
+            getSupportActionBar().setTitle("笑话大全");
             initPagerContent(new JokeFragment());
+
         } else if (id == R.id.nav_historytoday) {   //历史上的今天
+            getSupportActionBar().setTitle("历史上的今天");
             initPagerContent(new HistoryTodayFragment());
+
         } else if (id == R.id.nav_inquire) {        //查询信息
+            getSupportActionBar().setTitle("查询信息");
             initPagerContent(new InquireFragment());
         } else if (id == R.id.nav_share) {      //分享
 

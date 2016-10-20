@@ -59,8 +59,10 @@ public class WeiXinRecyclerAdapter extends RecyclerView.Adapter<WeiXinRecyclerAd
         holder.itemContentTv.setText(list.get(position).getSource());
 
         if(!TextUtils.isEmpty(list.get(position).getFirstImg())){
-            GlideUtils.getInstance().LoadContextBitmap(context,list.get(position).getFirstImg(),holder.itemIv,
-                R.drawable.lod,R.drawable.iv_error,GlideUtils.LOAD_BITMAP);
+            //GlideUtils.getInstance().LoadContextBitmap(context,list.get(position).getFirstImg(),holder.itemIv,
+            //    R.drawable.lod,R.drawable.iv_error,GlideUtils.LOAD_BITMAP);
+            GlideUtils.loadImageViewLodingSize(context,list.get(position).getFirstImg(),300,200,holder.itemIv,
+                R.drawable.lod,R.drawable.iv_error);
         }
         if (mOnItemClickLitener != null) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
