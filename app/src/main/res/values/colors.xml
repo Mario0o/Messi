@@ -11,4 +11,8 @@
     <color name="color_control_normal">#5e2a7f</color>
     <color name="text_color_primary">#ffff33</color>
     <color name="navigationview_bg_color">#ffffff</color>
+    <color name="text5_black">#333333</color>
+    <color name="bg2_light_white">#f9f9f9</color>
+    <color name="text6_blue">#1e78be</color>
+    <color name="text7_red">#c42237</color>
 </resources>

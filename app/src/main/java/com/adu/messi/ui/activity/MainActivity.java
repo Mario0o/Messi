@@ -1,5 +1,6 @@
 package com.adu.messi.ui.activity;
 
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -14,6 +15,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,6 +29,7 @@ import com.adu.messi.ui.fragment.InquireFragment;
 import com.adu.messi.ui.fragment.JokeFragment;
 import com.adu.messi.ui.fragment.WeiXinFragment;
 import com.adu.messi.utils.LogUtils;
+import com.adu.messi.view.HintDialog;
 
 public class MainActivity extends AppCompatActivity
     implements NavigationView.OnNavigationItemSelectedListener {
@@ -103,13 +106,24 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
+
         } else {
-            super.onBackPressed();
+            //super.onBackPressed();
+            new HintDialog.Builder(this)
+                .setTitle("提示")
+                .setMessage("你确定要退出吗？")
+                .setConfirmBtnListener(new DialogInterface.OnClickListener() {
+                    @Override public void onClick(DialogInterface dialog, int which) {
+                        System.exit(0);
+                    }
+                }).onCreate().show();
         }
     }
+
 
 
     @Override
@@ -143,6 +157,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_frist){          //首页
+            getSupportActionBar().setTitle("首页");
             initPagerContent(new HomeFragment());
 
         }else if (id == R.id.nav_weixin) {      //微信精选
@@ -194,4 +209,7 @@ public class MainActivity extends AppCompatActivity
         ft.replace(R.id.myContent, fragment);
         ft.commit();
     }
+
+
+
 }

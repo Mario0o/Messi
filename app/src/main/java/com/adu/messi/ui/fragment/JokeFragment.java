@@ -13,11 +13,11 @@ import com.adu.messi.R;
  * Created by adu on 2016/10/16.
  */
 
-public class JokeFragment extends Fragment{
+public class JokeFragment extends Fragment {
 
     @Nullable @Override
-    public View onCreateView(LayoutInflater inflater,ViewGroup container,Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_joke,container,false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_joke, container, false);
 
         return view;
     }
